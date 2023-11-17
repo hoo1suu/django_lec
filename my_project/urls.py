@@ -26,6 +26,7 @@ urlpatterns = [
     path('mysite/', include('mysite.urls')),
     path('pages/', include('pages.urls')),
     path('', include('pages.urls')),
+    path('accounts/', include('accounts.urls')),
 ]
 
 

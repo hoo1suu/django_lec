@@ -18,7 +18,8 @@ Including another URLconf
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
     path('', views.index, name='index'),
-    path('content/<int:id>/', views.content_detail, name='content_detail'),
+    path('<int:content_id>/', views.detail, name='detail'),
 ]

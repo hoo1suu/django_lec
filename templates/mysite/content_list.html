@@ -1,39 +1,7 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="ko">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>서비스 - 배달해모아</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-        <link rel = "stylesheet" type="text/css" href="{% static 'styles.css' %}">
-        <link rel = "stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-    </head>
+{% extends 'base.html' %}
+{% block content %}
 
-    <body>
-            <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container px-5">
-                <a class="navbar-brand" href="#!">배달해모아</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/mysite/">배달해모아</a></li>
-                        <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/">메인페이지</a></li>
-                        <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/company/">회사소개</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">서비스</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Page Content-->
-
-<!-- content_list.html -->
+<!-- Page Content-->
 <div class="container px-4 px-lg-5">
     {% if content_list %}
         {% for content in content_list %}
@@ -45,15 +13,15 @@
                 <div class="col-lg-5">
                     <!-- 제목 -->
                     <h1 class="font-weight-light">{{ content.title }}</h1>
-                    <!-- 설명 -->
-                    <p>{{ content.description }}</p>
+                    <!-- 내용 요약 -->
+                    <p>{{ content.content|truncatewords:30 }}</p>
                     <!-- Call to Action 버튼 -->
                     {% if content.title == "패션" %}
-                        <a class="btn btn-primary" href="https://ssumenam.com/">확인해보기!</a>
+                        <a class="btn btn-primary" href="{% url 'detail' content.id %}">확인해보기!</a>
                     {% elif content.title == "쿠폰" %}
-                        <a class="btn btn-primary" href="https://gift-pc.baemin.com/">확인해보기!</a>
+                        <a class="btn btn-primary" href="{% url 'detail' content.id %}">확인해보기!</a>
                     {% elif content.title == "여행" %}
-                        <a class="btn btn-primary" href="https://kr.trip.com/?Allianceid=4002393&SID=24917563&trip_sub1=&trip_sub3=D104625&allianceid=14887&sid=1621821&ppcid=ckid-_adid-_akid-_adgid-&utm_source=google&utm_medium=cpc&utm_campaign=20263098854&gclsrc=aw.ds&gad_source=1&gclid=CjwKCAiAxreqBhAxEiwAfGfndPuZNQH2ZE7zRRClN_dw7_UDoFti5VQpU12SUZkJnbr9ZcFPWNvsUBoCmYsQAvD_BwE">확인해보기!</a>
+                        <a class="btn btn-primary" href="{% url 'detail' content.id %}">확인해보기!</a>
                     {% endif %}
                 </div>
             </div>
@@ -63,9 +31,5 @@
     {% endif %}
 </div>
 
-
-            <footer class="py-5 bg-dark">
-            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
-        </footer>
-    </body>
-</html>
+{% endblock %}
+{% include "footer.html" %}
