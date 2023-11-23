@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container px-4 px-lg-5">
+    {% if mainpage %}
+        <h1>{{ mainpage.title }}</h1>
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="{{ mainpage.image.url }}" alt="{{ mainpage.title }}" />
+        <p>{{ mainpage.text }}</p>
+    {% else %}
+        <p>회사소개 정보가 현재 없습니다.</p>
+    {% endif %}
+</div>
+{% endblock %}
+{% include "footer.html" %}

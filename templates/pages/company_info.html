@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>회사소개 페이지입니다.</h1>
+<div class="container px-4 px-lg-5">
+    {% if company_info %}
+        <h1>{{ company_info.title }}</h1>
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="{{ company_info.image.url }}" alt="{{ company_info.title }}" />
+        <p>{{ company_info.content }}</p>
+    {% else %}
+        <p>회사 정보가 현재 없습니다.</p>
+    {% endif %}
+</div>
 {% endblock %}
 {% include "footer.html" %}
